@@ -1,0 +1,32 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build PointGPT",
+            "type": "shell",
+            "command": "docker build -t pointgpt .",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "Run PointGPT",
+            "type": "shell",
+            "command": "docker run -it -v ${workspaceFolder}:/workspace --gpus all pointgpt",
+            "dependsOn": "Build PointGPT",
+            "group": {
+                "kind": "none",
+                "isDefault": false
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            }
+        }
+    ]
+}
